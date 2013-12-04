@@ -53,7 +53,8 @@ $(function(){
 		});
 	});
 
-	$("body").on("click", ".exit", function(){
+	$("body").on("click", ".exit", function(e){
+		e.preventDefault();
 		navigator.app.exitApp();
 	});
 
@@ -65,6 +66,8 @@ $(function(){
 	resizeCanvas();
 	setGuideContent();
 	setOptionButtons();
+
+	document.addEventListener("deviceready", onDeviceReady, false);
 });
 
 function setOptionButtons(){
