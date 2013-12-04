@@ -6,8 +6,7 @@ TIME = 10;
 MAX_TIME = 10;
 MAX_SCORE = 100;
 COUNTDOWN = 3;
-
-PREV_STATE = "";
+TOTAL_ATTEMPTS = 0;
 
 $(function(){
     $(".knob#score").knob({
@@ -48,6 +47,12 @@ $(function(){
 		});
 	});
 
+	$("body").on("click", ".guide", function(){
+		$("#guide").modal({
+			keyboard: false
+		});
+	});
+
 	$("body").on("click", ".exit", function(){
 		
 	});
@@ -58,7 +63,35 @@ $(function(){
 	
 
 	resizeCanvas();
+	setGuideContent();
+	setOptionButtons();
 });
+
+function setOptionButtons(){
+	var data = "";
+	for(i in Syllables){
+		data += "<button class='btn btn-default series'>" + i + "</button>";
+	}
+	$("#options-btns").html(data);
+}
+
+function setGuideContent(){
+	var data = "";
+	var links = "<div id='up'>Select a series you want to view: <br />";
+	for(i in Syllables){
+		links += "<a href='#" + i + "'>" + i + "</a> | ";
+		data += "<a href='#up' class='pull-right'>up</a>";
+		data += "<h1 id='" + i + "'>" + i + "</h1>";
+		for(j in Syllables[i]){
+			data += "<div class='thumbnail'>";
+			data += "<img src='img/" + Syllables[i][j] + ".jpg' class='img-thumbnail' />";
+			data += "<div class='caption text-center'>" + Syllables[i][j] + "</div>";
+			data += "</div>";
+		}
+	}
+	links += "</div>";
+	$("#guide-content").html(links + data);
+};
 
 function toggleSeriesButtons(btn, change_enabled){
 	var t = $(btn).text();
@@ -94,7 +127,7 @@ function continueGame(){
     	$('.knob#time').val(TIME).trigger('change');
     	if(TIME < 1){
     		$('.knob#score').val(SCORE).trigger('change');
-    		$("#score-msg").text("Game over! Your score is: " + SCORE);
+    		$("#score-msg").text("Game over! Your score is: " + SCORE + " out of " + TOTAL_ATTEMPTS + "attempts");
     		$("#game-over").modal('show');
     		clearInterval(TIMER);
     	}
@@ -120,6 +153,7 @@ function togglePause(){
 
 function start(){
 	SCORE = 0;
+	TOTAL_ATTEMPTS = 0;
 	TIME = MAX_TIME;
 	COUNTDOWN = 3;
 	$(".modal").modal('hide');
@@ -180,6 +214,8 @@ function check(){
 	var correct = img.substring(img.lastIndexOf("/")+1, img.lastIndexOf("."));
 	var msg = "", cls = "alert-";
 	removeAlertClass();
+
+	TOTAL_ATTEMPTS++;
 	if(input == correct){
 		SCORE++;
 		msg = "Correct!";
@@ -193,7 +229,6 @@ function check(){
 	$('.knob#score').val(SCORE).trigger('change');
 	$("#in-game-info").text(msg).addClass(cls);
 
-	/* Reset */
 	$("#input").val("").focus();
 	setSyllable();
 }
@@ -238,9 +273,6 @@ function shuffle(array) {
 function resizeCanvas(){
 	$(".knob-parent").height($("canvas").width());
 }
-
-
-
 
 
 

@@ -23,7 +23,15 @@
                         <input id="score" class="knob col-xs-1" data-width="80" data-readOnly=true data-displayprevious="true" data-fgcolor="#DD0000" data-skin="tron" data-thickness=".2" value="0">
                     </center>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <br />
+                    <div>
+                        <center><button class="btn btn-info" type="button" id="pause" style="margin: -5px 0 5px">Pause</button></center>
+                    </div>
+                    <center>
+                        <img src="img/a.jpg" class="img-thumbnail" id="syllable">
+                    </center>
+                </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <h1 class="text-center">Time</h1>
@@ -33,16 +41,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div><center><button class="btn btn-info" type="button" id="pause">Pause</button></center><br /></div>
-                <center>
-                    <img src="img/a.jpg" alt="" class="img-thumbnail" id="syllable">
-                </center>
-                <br />
-            </div>
-            
-
-            <div>
+            <div class="clearfix">
                 <div class='info-container'>
                     <div class="alert alert-info text-center" id="in-game-info">Start</div>
                 </div>
@@ -106,7 +105,7 @@
                 <div class="modal-body">
                     <ul class="nav nav-pills nav-stacked text-center">
                       <li class="active"><a href="#" id="m-start">Start</a></li>
-                      <li><a href="#" id="m-guide">Guide</a></li>
+                      <li><a href="#" class="guide">Guide</a></li>
                       <li><a href="#" class="options">Options</a></li>
                       <li><a href="#" class="exit">Exit</a></li>
                     </ul>
@@ -122,17 +121,24 @@
                     <h4 class="modal-title text-center">Options</h4>
                 </div>
                 <div class="modal-body">
-                    <button class="btn btn-default series">a-series</button>
-                    <button class="btn btn-default series">k-series</button>
-                    <button class="btn btn-default series">g-series</button>
-                    <button class="btn btn-default series">s-series</button>
-                    <button class="btn btn-default series">z-series</button>
-                    <button class="btn btn-default series">t-series</button>
-                    <button class="btn btn-default series">d-series</button>
-                    <button class="btn btn-default series">n-series</button>
-
+                    <div id='options-btns'></div>
+                    
                     <br /><br />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="guide">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Guide</h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                    <div id="guide-content"></div>
                 </div>
             </div>
         </div>

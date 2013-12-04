@@ -1,7 +1,17 @@
 var Syllables = {
-	"a-series": "a,i,u,e,o".split(","),
+	"a-series": "a,i,u,e,o,n".split(","),
 	"k-series": "ka,ki,ku,ke,ko".split(","),
 	"g-series": "ga,gi,gu,ge,go".split(","),
-	"s-series": "sa,shi,su,se,so".split(",")
+	"s-series": "sa,shi,su,se,so".split(","),
+	"s-series": "za,ji,zu,ze,zo".split(","),
 	"t-series": "ta,chi,tsu,te,to".split(","),
+	"d-series": "da,ji-2,zu-2,de,do".split(","),
+	"n-series": "na,ni,nu,ne,no".split(","),
+	"h-series": "ha,hi,fu,he,ho".split(","),
+	"b-series": "ba,bi,bu,be,bo".split(","),
+	"p-series": "pa,pi,pu,pe,po".split(","),
+	"m-series": "ma,mi,mu,me,mo".split(","),
+	"y-series": "ya,yu,yo".split(","),
+	"r-series": "ra,ri,ru,re,ro".split(","),
+	"w-series": "wa,wo".split(","),
 };
