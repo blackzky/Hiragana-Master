@@ -3,7 +3,7 @@ INDEX = 0;
 ENABLED = "a-series";
 SCORE = 0;
 TIME = 10;
-MAX_TIME = 10;
+MAX_TIME = 30;
 MAX_SCORE = 100;
 COUNTDOWN = 3;
 TOTAL_ATTEMPTS = 0;
@@ -127,7 +127,7 @@ function continueGame(){
     	$('.knob#time').val(TIME).trigger('change');
     	if(TIME < 1){
     		$('.knob#score').val(SCORE).trigger('change');
-    		$("#score-msg").text("Game over! Your score is: " + SCORE + " out of " + TOTAL_ATTEMPTS + "attempts");
+    		$("#score-msg").text("Game over! Your score is: " + SCORE + " out of " + TOTAL_ATTEMPTS + " attempts.");
     		$("#game-over").modal('show');
     		clearInterval(TIMER);
     	}
@@ -152,6 +152,9 @@ function togglePause(){
 }
 
 function start(){
+	MAX_TIME = parseInt($("#max_time").val()) || 30;
+	$('.knob#time').trigger('configure',{"max": MAX_TIME});
+
 	SCORE = 0;
 	TOTAL_ATTEMPTS = 0;
 	TIME = MAX_TIME;
