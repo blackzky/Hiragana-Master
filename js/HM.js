@@ -199,10 +199,15 @@ function check(){
 }
 
 function checkHandler(e){
+	$("#in-game-info").text("");
 	if(TIME > 0){
 		if(e.type == "keyup"){
 			if(e.which == 13){
 				check();
+			}else if(e.which == 27){
+				setSyllable();
+			}else{
+				$("#in-game-info").text("Trying...");
 			}
 		}else{
 			check();
