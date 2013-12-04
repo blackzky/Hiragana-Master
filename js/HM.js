@@ -39,13 +39,56 @@ $(function(){
 	$("#menu").modal('show');
 	$("body").on("click", "#m-start, #go-restart", start);
 
+	$("body").on("click", ".options", function(){
+		$(".series").each(function(i, btn){
+			toggleSeriesButtons(btn, false);
+		});
+		$("#options").modal({
+			keyboard: false
+		});
+	});
+
+	$("body").on("click", ".exit", function(){
+		
+	});
+
+	$("body").on("click", ".series", toggleSeries);
+
 	$("body").on("click", "#pause", togglePause);
 	
 
 	resizeCanvas();
 });
 
+function toggleSeriesButtons(btn, change_enabled){
+	var t = $(btn).text();
+	$(btn).removeClass("btn-info");
+	$(btn).removeClass("btn-default");
+
+	if(ENABLED.indexOf(t) === -1){
+		if(change_enabled){
+			ENABLED += t;
+			$(btn).addClass("btn-info");
+		}else{
+			$(btn).addClass("btn-default");
+		}
+	}else{
+		if(change_enabled){
+			ENABLED = ENABLED.replace(t, "");
+			$(btn).addClass("btn-default");
+		}else{
+			$(btn).addClass("btn-info");
+		}
+
+	}
+}
+
+function toggleSeries(){
+	toggleSeriesButtons(this, true);
+}
+
 function continueGame(){
+	$("#input").focus();
 	TIMER = setInterval(function(){
 		TIME--;
     	$('.knob#time').val(TIME).trigger('change');
