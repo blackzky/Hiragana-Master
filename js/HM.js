@@ -54,7 +54,7 @@ $(function(){
 	});
 
 	$("body").on("click", ".exit", function(){
-		
+		navigator.app.exitApp();
 	});
 
 	$("body").on("click", ".series", toggleSeries);
